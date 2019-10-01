@@ -110,12 +110,11 @@ RTC::ReturnCode_t testFSMTest::onDeactivated(RTC::UniqueId ec_id)
 }
 */
 
-/*
+
 RTC::ReturnCode_t testFSMTest::onExecute(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
-*/
 
 /*
 RTC::ReturnCode_t testFSMTest::onAborting(RTC::UniqueId ec_id)

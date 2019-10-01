@@ -145,7 +145,7 @@ class testFSM
    * 
    * 
    */
-  RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id) override;
+   RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id) override;
 
   /***
    *

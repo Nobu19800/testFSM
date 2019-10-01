@@ -31,11 +31,9 @@ RTC::ReturnCode_t Top::onExit() {
 // }
 
 RTC::ReturnCode_t node1::onEntry() {
-    std::cout << "node1::onEntry" << std::endl;
     return RTC::RTC_OK;
 }
 RTC::ReturnCode_t node1::onExit() {
-    std::cout << "node1::onExit" << std::endl;
     return RTC::RTC_OK;
 }
 
@@ -50,11 +48,9 @@ void node1::event1() {
 // }
 
 RTC::ReturnCode_t node2::onEntry() {
-    std::cout << "node2::onEntry" << std::endl;
   return RTC::RTC_OK;
 }
 RTC::ReturnCode_t node2::onExit() {
-    std::cout << "node2::onExit" << std::endl;
   return RTC::RTC_OK;
 }
 
@@ -70,11 +66,9 @@ void node2::event2(RTC::TimedLong) {
 // }
 
 RTC::ReturnCode_t node3::onEntry() {
-    std::cout << "node3::onEntry" << std::endl;
   return RTC::RTC_OK;
 }
 RTC::ReturnCode_t node3::onExit() {
-    std::cout << "node3::onExit" << std::endl;
   return RTC::RTC_OK;
 }
 

@@ -126,7 +126,6 @@ RTC::ReturnCode_t testFSM::onExecute(RTC::UniqueId ec_id)
   return RTC::RTC_OK;
 }
 
-
 /*
 RTC::ReturnCode_t testFSM::onAborting(RTC::UniqueId ec_id)
 {
