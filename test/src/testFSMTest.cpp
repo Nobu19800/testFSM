@@ -153,11 +153,8 @@ RTC::ReturnCode_t testFSMTest::onRateChanged(RTC::UniqueId ec_id)
 */
 
 bool testFSMTest::runTest()
-{
-    m_event1Out.write();
-    m_event2Out.write();
-    
-    return false;
+{   
+    return true;
 }
 
 
