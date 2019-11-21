@@ -43,12 +43,6 @@ namespace testFSM10Fsm {
     virtual void event1(RTC::TimedShort data) {}
     
     /*!
-     * 概要2
-     * - Type: データ型2
-     * - Number: データ数2
-     * - Semantics: 説明2
-     * - Unit: 単位2
-     * - Operation Cycle: 処理頻度2
      */
     virtual void event2() {}
     

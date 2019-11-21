@@ -25,7 +25,7 @@
             <rtcDoc:Doc rtcDoc:operation="処理頻度1" rtcDoc:unit="単位1" rtcDoc:semantics="説明1" rtcDoc:number="データ数1" rtcDoc:type="データ型1" rtcDoc:description="概要1"/>
         </rtc:Event>
         <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node3" rtc:source="node1" rtc:condition="guard1" rtc:name="event2">
-            <rtcDoc:Doc rtcDoc:operation="処理頻度2" rtcDoc:unit="単位2" rtcDoc:semantics="説明2" rtcDoc:number="データ数2" rtcDoc:type="データ型2" rtcDoc:description="概要2"/>
+            <rtcDoc:Doc/>
         </rtc:Event>
         <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node3" rtc:source="node2" rtc:condition="" rtc:name="">
             <rtcDoc:Doc/>
