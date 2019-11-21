@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rtc:RtcProfile rtc:version="0.3" rtc:id="RTC:VenderName:Category:testFSM10:1.0.0" xmlns:rtc="http://www.openrtp.org/namespaces/rtc" xmlns:rtcExt="http://www.openrtp.org/namespaces/rtc_ext" xmlns:rtcDoc="http://www.openrtp.org/namespaces/rtc_doc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="testFSM10" rtc:updateDate="2019-11-21T09:21:02.000+09:00" rtc:creationDate="2019-11-21T09:21:02.000+09:00" rtc:version="1.0.0" rtc:vendor="VenderName" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="ModuleDescription" rtc:category="Category" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="testFSM10">
+    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="testFSM10" rtc:updateDate="2019-11-14T16:43:11.000+09:00" rtc:creationDate="2019-11-14T14:40:42.000+09:00" rtc:version="1.0.0" rtc:vendor="VenderName" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="ModuleDescription" rtc:category="Category" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="testFSM10">
         <rtcExt:Properties rtcExt:value="true" rtcExt:name="FSM"/>
         <rtcExt:Properties rtcExt:value="StaticFSM" rtcExt:name="FSMType"/>
     </rtc:BasicInfo>
@@ -21,13 +21,16 @@
         <rtc:OnModeChanged xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
     </rtc:Actions>
     <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="LEFT" rtcExt:variableName="FSMEvent" rtc:type="Any" rtc:name="FSMEvent" rtc:portType="EventPort">
-        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="RTC::TimedShort" rtc:target="node2" rtc:source="node1" rtc:condition="" rtc:name="event1">
-            <rtcDoc:Doc rtcDoc:operation="処理頻度1" rtcDoc:unit="単位1" rtcDoc:semantics="説明1" rtcDoc:number="データ数1" rtcDoc:type="データ型1" rtcDoc:description="概要1"/>
+        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node2" rtc:source="node1" rtc:condition="event1 guard" rtc:name="event1">
+            <rtcDoc:Doc rtcDoc:operation="" rtcDoc:unit="" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="bbbbbb" rtcDoc:description="aaaaa"/>
         </rtc:Event>
-        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node3" rtc:source="node1" rtc:condition="guard1" rtc:name="event2">
-            <rtcDoc:Doc/>
+        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="RTC::TimedLong" rtc:target="node4" rtc:source="node2" rtc:condition="" rtc:name="event2">
+            <rtcDoc:Doc rtcDoc:operation="event2頻度" rtcDoc:unit="event2単位" rtcDoc:semantics="event2詳細" rtcDoc:number="event2データ数" rtcDoc:type="event2データ型" rtcDoc:description="event2概要"/>
         </rtc:Event>
-        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node3" rtc:source="node2" rtc:condition="" rtc:name="">
+        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node3" rtc:source="node2" rtc:condition="" rtc:name="event3">
+            <rtcDoc:Doc rtcDoc:operation="" rtcDoc:unit="" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="" rtcDoc:description=""/>
+        </rtc:Event>
+        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node4" rtc:source="node3" rtc:condition="" rtc:name="">
             <rtcDoc:Doc/>
         </rtc:Event>
     </rtc:DataPorts>

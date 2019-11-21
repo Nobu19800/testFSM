@@ -1,5 +1,5 @@
-set(comp_srcs testFSM.cpp testFSMFSM.cpp)
-set(standalone_srcs testFSMComp.cpp)
+set(comp_srcs testFSM10.cpp testFSM10FSM.cpp)
+set(standalone_srcs testFSM10Comp.cpp)
 
 if(${OPENRTM_VERSION_MAJOR} LESS 2)
   set(OPENRTM_CFLAGS ${OPENRTM_CFLAGS} ${OMNIORB_CFLAGS})

@@ -1,0 +1,16 @@
+<scxml initial="node0" name="Top" version="1.0" xmlns="http://www.w3.org/2005/07/scxml"><!--   node-size-and-position x=0 y=0 w=204 h=638  -->
+ <state id="node0"><!--   node-size-and-position x=62.61 y=43 w=75 h=75  -->
+  <transition id="13" target="node1"></transition>
+ </state>
+ <state id="node1"><!--   node-size-and-position x=62.61 y=168 w=75 h=75  -->
+  <transition cond="event1 guard" event="event1" id="15" target="node2"></transition>
+ </state>
+ <state id="node2"><!--   node-size-and-position x=65.61 y=293 w=75 h=75  -->
+  <transition event="event2" id="17" target="node4"><!--   edge-path [node4]  x=140.11 y=455.5  --></transition>
+  <transition event="event3" id="18" target="node3"></transition>
+ </state>
+ <final id="node4"><!--   node-size-and-position x=68.61 y=543 w=75 h=75  --></final>
+ <state id="node3"><!--   node-size-and-position x=34.61 y=418 w=75 h=75  -->
+  <transition id="21" target="node4"></transition>
+ </state>
+</scxml>

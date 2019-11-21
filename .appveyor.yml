@@ -1,5 +1,5 @@
 ﻿version: '{build}'
-clone_folder: c:\workspace\testFSM
+clone_folder: c:\workspace\testFSM10
 platform:
 - x64
 environment:

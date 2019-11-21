@@ -28,7 +28,7 @@ env:
 script:
   - mkdir ../workdir
   - cd ../workdir
-  - mv ../testFSM .
+  - mv ../testFSM10 .
 
   - export IMAGE_NAME=openrtm:${TARGET_DIST}-${TARGET_VER}
-  - docker build -f testFSM/scripts/${TARGET_DIST}_${TARGET_VER}/Dockerfile . -t ${IMAGE_NAME}
+  - docker build -f testFSM10/scripts/${TARGET_DIST}_${TARGET_VER}/Dockerfile . -t ${IMAGE_NAME}

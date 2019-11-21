@@ -21,7 +21,7 @@ RUN apt-get update\
  && apt-get clean\
  && rm -rf /var/lib/apt/lists/*
 
-COPY testFSM /root/testFSM
-WORKDIR /root/testFSM
+COPY testFSM10 /root/testFSM10
+WORKDIR /root/testFSM10
 RUN mkdir build && cd build && cmake .. -DBUILD_DOCUMENTATION=ON -DBUILD_TESTS=ON && make && make doc && make install && cpack\
           && export CTEST_OUTPUT_ON_FAILURE=1 && make test

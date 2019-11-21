@@ -1,15 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
-if(POLICY CMP0046)
- cmake_policy(SET CMP0046 OLD)
-endif()
-if(POLICY CMP0048)
-  cmake_policy(SET CMP0048 OLD)
-endif()
 
-project(testFSM)
+project(testFSM10)
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 include("${PROJECT_SOURCE_DIR}/cmake/utils.cmake")
-set(PROJECT_VERSION 1.0.0 CACHE STRING "testFSM version")
+set(PROJECT_VERSION 1.0.0 CACHE STRING "testFSM10 version")
 set(UPGRADE_GUID "")
 DISSECT_VERSION()
 set(PROJECT_SHORT_VER ${PROJECT_VERSION_MAJOR}${PROJECT_VERSION_MINOR}${PROJECT_VERSION_REVISION})
@@ -128,6 +122,12 @@ if(BUILD_IDL)
     add_subdirectory(idl)
 endif(BUILD_IDL)
 
+file(GLOB IDL_FILES "${CMAKE_CURRENT_SOURCE_DIR}/idl/*.idl")
+if(IDL_FILES)
+    install(FILES ${IDL_FILES} DESTINATION ${INSTALL_PREFIX}/idl
+        COMPONENT component)
+endif(IDL_FILES)
+
 add_subdirectory(include)
 MAP_ADD_STR(headers  "include/" comp_hdrs)
 add_subdirectory(src)
@@ -164,5 +164,3 @@ configure_file("${PROJECT_SOURCE_DIR}/cmake/cpack_options.cmake.in"
 set(CPACK_PROJECT_CONFIG_FILE ${cpack_options})
 include(${CPACK_PROJECT_CONFIG_FILE})
 include(CPack)
-
-

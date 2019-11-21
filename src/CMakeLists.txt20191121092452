@@ -1,7 +1,5 @@
-set(comp_srcs
-   testFSM10Test.cpp
-   )
-set(standalone_srcs testFSM10TestComp.cpp)
+set(comp_srcs testFSM10.cpp )
+set(standalone_srcs testFSM10Comp.cpp)
 
 if(${OPENRTM_VERSION_MAJOR} LESS 2)
   set(OPENRTM_CFLAGS ${OPENRTM_CFLAGS} ${OMNIORB_CFLAGS})
@@ -32,26 +30,35 @@ endif (DEFINED OPENRTM_LIBRARIES)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME})
-include_directories(${PROJECT_SOURCE_DIR}/test/include)
-include_directories(${PROJECT_SOURCE_DIR}/test/include/${PROJECT_NAME}Test)
 include_directories(${PROJECT_BINARY_DIR})
 include_directories(${PROJECT_BINARY_DIR}/idl)
 include_directories(${OPENRTM_INCLUDE_DIRS})
 add_definitions(${OPENRTM_CFLAGS})
 
-MAP_ADD_STR(comp_test_hdrs "../" comp_headers)
+MAP_ADD_STR(comp_hdrs "../" comp_headers)
 
 link_directories(${OPENRTM_LIBRARY_DIRS})
 
+add_library(${PROJECT_NAME} ${LIB_TYPE} ${comp_srcs}
+  ${comp_headers} ${ALL_IDL_SRCS})
+set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+set_source_files_properties(${ALL_IDL_SRCS} PROPERTIES GENERATED 1)
 if(NOT TARGET ALL_IDL_TGT)
  add_custom_target(ALL_IDL_TGT)
 endif(NOT TARGET ALL_IDL_TGT)
+add_dependencies(${PROJECT_NAME} ALL_IDL_TGT)
+target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES})
 
-add_executable(${PROJECT_NAME}Test ${standalone_srcs}
+add_executable(${PROJECT_NAME}Comp ${standalone_srcs}
   ${comp_srcs} ${comp_headers} ${ALL_IDL_SRCS})
-set_source_files_properties(${ALL_IDL_SRCS} PROPERTIES GENERATED 1)
-add_dependencies(${PROJECT_NAME}Test ${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME}Test ${OPENRTM_LIBRARIES} ${PROJECT_NAME})
-set_property(TARGET ${PROJECT_NAME}Test PROPERTY CXX_STANDARD 11)
+add_dependencies(${PROJECT_NAME}Comp ALL_IDL_TGT)
+target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES})
 
-add_test(NAME ${PROJECT_NAME}_test COMMAND $<TARGET_FILE:${PROJECT_NAME}Test> -o "manager.components.precreate:${PROJECT_NAME}" -o "manager.components.preconnect:${PROJECT_NAME}0.event?port=${PROJECT_NAME}Test0.event1&fsm_event_name=event1,${PROJECT_NAME}0.event?port=${PROJECT_NAME}Test0.event2&fsm_event_name=event2,${PROJECT_NAME}0.event?port=${PROJECT_NAME}Test0.&fsm_event_name=" -o "manager.components.preactivation:${PROJECT_NAME}0,${PROJECT_NAME}Test0" WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}Comp
+    EXPORT ${PROJECT_NAME}
+    RUNTIME DESTINATION ${INSTALL_PREFIX} COMPONENT component
+    LIBRARY DESTINATION ${INSTALL_PREFIX} COMPONENT component
+    ARCHIVE DESTINATION ${INSTALL_PREFIX} COMPONENT component)
+
+install(FILES ${PROJECT_SOURCE_DIR}/RTC.xml DESTINATION ${INSTALL_PREFIX}
+        COMPONENT component)
