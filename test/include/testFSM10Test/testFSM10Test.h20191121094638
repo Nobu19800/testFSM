@@ -224,10 +224,6 @@ class testFSM10Test
 
   // DataOutPort declaration
   // <rtc-template block="outport_declare">
-  RTC::TimedLong m_in;
-  /*!
-   */
-  RTC::OutPort<RTC::TimedLong> m_inOut;
     RTC::TimedShort m_event1;
     RTC::OutPort<RTC::TimedShort> m_event1Out;
     

@@ -116,7 +116,6 @@ The ports provided by the component are described below:
 =============== =========== ============================== =======
 Name            Type        Data type                      Purpose
 =============== =========== ============================== =======
-in              InPort      RTC::TimedLong                 
 FSMEvent        EventPort    
 =============== =========== ============================== =======
 

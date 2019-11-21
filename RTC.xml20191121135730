@@ -31,9 +31,6 @@
         <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node3" rtc:source="node2" rtc:condition="" rtc:name="">
             <rtcDoc:Doc/>
         </rtc:Event>
-        <rtc:Event xsi:type="rtcDoc:event_doc" rtc:type="" rtc:target="node1" rtc:source="node0" rtc:condition="" rtc:name="">
-            <rtcDoc:Doc/>
-        </rtc:Event>
     </rtc:DataPorts>
     <rtc:Language xsi:type="rtcExt:language_ext" rtc:kind="C++"/>
 </rtc:RtcProfile>

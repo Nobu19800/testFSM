@@ -1,20 +1,20 @@
 ﻿// -*- C++ -*-
 /*!
- * @file  testFSM10Test.cpp
+ * @file  testFSM10.cpp
  * @brief ModuleDescription
  * @date $Date$
  *
  * $Id$
  */
 
-#include "testFSM10Test.h"
+#include "testFSM10.h"
 
 // Module specification
 // <rtc-template block="module_spec">
 static const char* testfsm10_spec[] =
   {
-    "implementation_id", "testFSM10Test",
-    "type_name",         "testFSM10Test",
+    "implementation_id", "testFSM10",
+    "type_name",         "testFSM10",
     "description",       "ModuleDescription",
     "version",           "1.0.0",
     "vendor",            "VenderName",
@@ -32,13 +32,12 @@ static const char* testfsm10_spec[] =
  * @brief constructor
  * @param manager Maneger Object
  */
-testFSM10Test::testFSM10Test(RTC::Manager* manager)
+testFSM10::testFSM10(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
-    m_inOut("in", m_in)
-,
-    m_event1Out("event1", m_event1),
-    m_event2Out("event2", m_event2)
+    m_fsm(this),
+    m_FSMEventIn("event", m_fsm)
+
     // </rtc-template>
 {
 }
@@ -46,22 +45,25 @@ testFSM10Test::testFSM10Test(RTC::Manager* manager)
 /*!
  * @brief destructor
  */
-testFSM10Test::~testFSM10Test()
+testFSM10::~testFSM10()
 {
 }
 
 
 
-RTC::ReturnCode_t testFSM10Test::onInitialize()
+RTC::ReturnCode_t testFSM10::onInitialize()
 {
+#ifdef ORB_IS_TAO
+  ::CORBA_Util::toRepositoryIdOfStruct<TimedLong>();
+#endif
   // Registration: InPort/OutPort/Service
   // <rtc-template block="registration">
   // Set InPort buffers
   
   // Set OutPort buffer
-  addOutPort("in", m_inOut);
-  addOutPort("event1", m_event1Out);
-  addOutPort("event2", m_event2Out);
+
+  // Set EventPort buffer
+  addInPort("event", m_FSMEventIn);
   
   // Set service provider to Ports
   
@@ -73,103 +75,104 @@ RTC::ReturnCode_t testFSM10Test::onInitialize()
 
   // <rtc-template block="bind_config">
   // </rtc-template>
+  // <rtc-template block="bind_event">
+  m_FSMEventIn.bindEvent("event1", &testFSM10Fsm::Top::event1);
+  m_FSMEventIn.bindEvent("event2", &testFSM10Fsm::Top::event2);
+  // </rtc-template>
+
   
   return RTC::RTC_OK;
 }
 
 /*
-RTC::ReturnCode_t testFSM10Test::onFinalize()
+RTC::ReturnCode_t testFSM10::onFinalize()
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onStartup(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onStartup(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onShutdown(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onShutdown(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onActivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onActivated(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onDeactivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onDeactivated(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onExecute(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onExecute(RTC::UniqueId ec_id)
+{
+  m_fsm.run_event();
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t testFSM10::onAborting(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onAborting(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onError(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onError(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onReset(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onReset(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onStateUpdate(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t testFSM10Test::onStateUpdate(RTC::UniqueId ec_id)
+RTC::ReturnCode_t testFSM10::onRateChanged(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
-/*
-RTC::ReturnCode_t testFSM10Test::onRateChanged(RTC::UniqueId ec_id)
-{
-  return RTC::RTC_OK;
-}
-*/
-
-
-bool testFSM10Test::runTest()
-{
-    return true;
-}
 
 
 extern "C"
 {
  
-  void testFSM10TestInit(RTC::Manager* manager)
+  void testFSM10Init(RTC::Manager* manager)
   {
     coil::Properties profile(testfsm10_spec);
     manager->registerFactory(profile,
-                             RTC::Create<testFSM10Test>,
-                             RTC::Delete<testFSM10Test>);
+                             RTC::Create<testFSM10>,
+                             RTC::Delete<testFSM10>);
   }
   
 };

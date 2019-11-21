@@ -99,7 +99,7 @@ ModuleDescription
 
 |  |  |
 ----|---- 
-| Port Name | FSMEvent |
+| Port Name | m_FSMEventIn |
 | FSM Type | StaticFSM |
 
 #### Node list
@@ -137,40 +137,6 @@ ModuleDescription
 
 #### Event list
 
-##### 
-
-
-
-<table>
-  <tr>
-    <td>Source State</td>
-    <td colspan="2">node0</td>
-  </tr>
-  <tr>
-    <td>Target State</td>
-    <td colspan="2">node1</td>
-  </tr>
-  <tr>
-    <td>DataType</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Number of Data</td>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td>Unit</td>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td>Operational frecency Period</td>
-    <td colspan="2"></td>
-  </tr>
-</table>
-
-
-
 ##### event1
 
 概要1
@@ -186,7 +152,7 @@ ModuleDescription
   </tr>
   <tr>
     <td>DataType</td>
-    <td>RTC::TimedShort</td>
+    <td>RTC::TimedShort data</td>
     <td>データ型1</td>
   </tr>
   <tr>

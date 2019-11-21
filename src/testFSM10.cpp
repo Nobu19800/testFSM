@@ -35,6 +35,7 @@ static const char* testfsm10_spec[] =
 testFSM10::testFSM10(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
+    m_inIn("in", m_in),
     m_fsm(this),
     m_FSMEventIn("event", m_fsm)
 
@@ -59,6 +60,7 @@ RTC::ReturnCode_t testFSM10::onInitialize()
   // Registration: InPort/OutPort/Service
   // <rtc-template block="registration">
   // Set InPort buffers
+  addInPort("in", m_inIn);
   
   // Set OutPort buffer
 

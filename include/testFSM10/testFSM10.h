@@ -21,6 +21,7 @@
 
 // Service Consumer stub headers
 // <rtc-template block="consumer_stub_h">
+#include "BasicDataTypeStub.h"
 
 // </rtc-template>
 
@@ -225,6 +226,10 @@ class testFSM10
 
   // DataInPort declaration
   // <rtc-template block="inport_declare">
+  RTC::TimedLong m_in;
+  /*!
+   */
+  RTC::InPort<RTC::TimedLong> m_inIn;
   
   // </rtc-template>
 
